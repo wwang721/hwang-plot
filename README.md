@@ -28,8 +28,8 @@ A simple example is given in the [**example**](/example) folder.
 Things need to be done by H. Wang [@Innocentcloud](https://github.com/Innocentcloud):
 
 1. Create a new folder here for each figure, e.g., [figure1](/figure1).
-2. Upload the data into the folders.
-3. Add your requirements for each figure into the `readme.md` in the corresponding folder of the figure.
+2. Upload data into the created folders.
+3. Add your requirements for each figure to the `readme.md` file in the corresponding folder.
 
 Things need to be done by W. Wang [@wwang721](https://github.com/wwang721):
 
