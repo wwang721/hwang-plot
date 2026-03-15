@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.png'
+
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.png'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test-plots:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Install dependencies
+        run: |
+          uv venv
+          uv pip install -r requirements.txt
+
+      # Strongly recommended if you use matplotlib:
+      - name: Force headless plotting backend
+        run: |
+          echo "MPLBACKEND=Agg" >> $GITHUB_ENV
+
+      # Option A: run every script under a folder (e.g. plots/)
+      - name: Run python scripts
+        run: |
+          uv run python --version
+
+          cd example
+          uv run vel_field.py
+          cd ..
+
+      - name: Push to GitHub
+        uses: EndBug/add-and-commit@v7.2.1
+        with:
+          branch: main
+          message: ":bento: Generate figures [bot]"
+          add: "**/*.png"
+          default_author: github_actions
