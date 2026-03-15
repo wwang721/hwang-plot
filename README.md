@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/wwang721/hwang-plot/actions/workflows/ci.yml/badge.svg)](https://github.com/wwang721/hwang-plot/actions/workflows/ci.yml)
 
-This repository contains plotting scripts and data for H. Wang’s master’s thesis. All figures are automatically generated via **GitHub Actions**, with the status displayed in the badge above.
+This repository contains plotting scripts and data for Hai Wang’s master’s thesis @Innocentcloud. All figures are automatically generated via [**GitHub Actions**](/.github/workflows/ci.yml), with the status displayed in the badge above.
 
 
 ## Requirements
@@ -21,3 +21,12 @@ You can install all dependencies by running `pip install -r requirements.txt`.
 ## Example
 
 A simple example is given in the [**example**](/example) folder.
+
+
+## Things to do
+
+Things need to be done by H. Wang @Innocentcloud:
+
+1. Create a new folder here for each figure, e.g., [figure1](/figure1).
+2. Upload the data into the folder.
+3. Add your requirements for the figures in the `readme.md` in each figure's folder.

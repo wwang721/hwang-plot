@@ -1,0 +1,3 @@
+# Requirements for Fig. 1
+
+Where is the data? What to plot? ...
