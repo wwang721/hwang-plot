@@ -4,12 +4,15 @@
 
 This repository contains plotting scripts and data for Hai Wang (汪海)’s master thesis [@Innocentcloud](https://github.com/Innocentcloud). All figures are automatically generated via [**GitHub Actions**](/.github/workflows/ci.yml), with the status displayed in the badge above.
 
+> [!CAUTION]
+> Do **not** commit locally generated PNG figures to the repository. We only keep figures produced automatically by [@github-actions[bot]](https://github.com/features/actions).
+
 
 ## Requirements
 
 The code was run with **Python 3.11+** and the following packages:
 
-| Package    | Minimum Version | Usage                                                             |
+| Package    | Minimum version | Usage                                                             |
 | :--------- | :-------------: | :---------------------------------------------------------------- |
 | numpy      | 2.1.3           | Numerical computations                                            |
 | matplotlib | 3.10.0          | Plotting and visualization                                        |

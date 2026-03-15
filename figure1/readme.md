@@ -1,3 +1,1 @@
-# Requirements for Fig. 1
-
-Where is the data? What to plot? ...
+文件(夹)名里不要带空格，尽量用英文名
