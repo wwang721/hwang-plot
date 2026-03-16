@@ -1,6 +1,6 @@
 #
 #   Created by WW on 2023-12-20.
-#   Updated by WW on 2025-04-05.
+#   Updated by WW on 2026-03-16.
 #   Copyright © WW. All rights reserved.
 #
 #   Basic plot settings
@@ -18,9 +18,11 @@ def plt_init():
     plt.rcParams.update({
         # requires a working LaTeX installation & slower than Matplotlib's mathtext
         "text.usetex": False,
+        "font.family": ["Times New Roman", "Noto Sans CJK JP"],
         # "font.family": "Helvetica",    # or other sans-serif font like Arial
         # "font.sans-serif": "DejaVu Sans"
     })
+    plt.rcParams["mathtext.fontset"] = "stix"
     # plt.rcParams["mathtext.fontset"] = "custom"
     # plt.rcParams["mathtext.rm"] = "Helvetica"  # change the math font to Helvetica
     # plt.rcParams["mathtext.cal"] = "DejaVu Serif Display"  # use the dejavusans version \mathcal{}; set to "DejaVu Sans" for DejaVu normal math font
@@ -37,4 +39,3 @@ def plt_init():
     plt.rc('ytick', labelsize=12, direction='in')
     plt.rc('axes', labelsize=14, titlesize=14)
     plt.rc('legend', fontsize=12)
-    

@@ -1,18 +1,12 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from plt_settings import plt_init
 
 plt_init()
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-plt.rcParams.update({
-    "font.family": ["Times New Roman", "Noto Sans CJK JP"],
-})
-
-plt.rcParams["mathtext.fontset"] = "stix"
 
 x = np.linspace(0, 2 * np.pi, 100)
 y = np.sin(x)
