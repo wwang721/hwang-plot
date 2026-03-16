@@ -1,16 +1,22 @@
-name: CI
+name: auto-plot
 
 on:
   push:
     paths-ignore:
       - '**/*.md'
       - '**/*.png'
+      - '**/*.jpg'
+      - '**/*.jpeg'
+      - '**/*.csv'
 
   pull_request:
     branches: [ "main" ]
     paths-ignore:
       - '**/*.md'
       - '**/*.png'
+      - '**/*.jpg'
+      - '**/*.jpeg'
+      - '**/*.csv'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -19,7 +25,8 @@ permissions:
   contents: write
 
 jobs:
-  test-plots:
+  generate-figures:
+    if: github.actor == 'wwang721'
     runs-on: ubuntu-latest
 
     steps:
@@ -45,6 +52,42 @@ jobs:
         run: |
           echo "MPLBACKEND=Agg" >> $GITHUB_ENV
 
+      - name: Restore font cache
+        id: font-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/cached-fonts
+          key: ${{ runner.os }}-font-cache-v1
+
+      - name: Install Microsoft core fonts
+        if: steps.font-cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ttf-mscorefonts-installer fonts-noto-cjk fontconfig
+
+          mkdir -p ~/cached-fonts
+          sudo cp -r /usr/share/fonts/truetype/msttcorefonts ~/cached-fonts/
+          sudo cp -r /usr/share/fonts/opentype/noto ~/cached-fonts/
+          sudo fc-cache -f -v
+
+      - name: Restore fonts to system
+        if: steps.font-cache.outputs.cache-hit == 'true'
+        run: |
+          sudo mkdir -p /usr/share/fonts/truetype
+          sudo mkdir -p /usr/share/fonts/opentype
+
+          sudo cp -r ~/cached-fonts/msttcorefonts /usr/share/fonts/truetype/
+          sudo cp -r ~/cached-fonts/noto /usr/share/fonts/opentype/
+
+          sudo fc-cache -f -v
+          rm -rf ~/.cache/matplotlib
+      
+      - name: Check installed fonts
+        run: |
+          fc-list | grep -i "Times New Roman" || true
+          fc-list | grep -i "Noto Serif CJK" || true
+
       # Option A: run every script under a folder (e.g. plots/)
       - name: Run python scripts
         run: |
@@ -52,6 +95,9 @@ jobs:
 
           cd example
           uv run vel_field.py
+          cd ..
+          cd figure1
+          uv run plot.py
           cd ..
 
       - name: Push to GitHub

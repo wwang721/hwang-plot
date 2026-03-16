@@ -17,6 +17,7 @@ The code was run with **Python 3.11+** and the following packages:
 | numpy      | 2.1.3           | Numerical computations                                            |
 | matplotlib | 3.10.0          | Plotting and visualization                                        |
 | scipy      | 1.15.3          | Miscellaneous scientific functions                                |
+| pandas     | 2.1.3           | Handling tabular data                                             |
 
 You can install all dependencies by running `pip install -r requirements.txt`.
 
