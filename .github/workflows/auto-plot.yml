@@ -93,11 +93,11 @@ jobs:
         run: |
           uv run python --version
 
-          cd example
-          uv run vel_field.py
-          cd ..
+          # cd example
+          # uv run vel_field.py
+          # cd ..
           cd figure1
-          uv run plot.py
+          uv run plot_test.py
           cd ..
 
       - name: Push to GitHub
