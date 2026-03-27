@@ -107,9 +107,13 @@ jobs:
           # uv run vel_field.py
           # cd ..
           cd figure1
-          uv run font_test.py
+          # uv run font_test.py
           uv run plot.py
-          uv run plot2.py
+          # uv run plot2.py
+          cd ..
+          cd figure2
+          uv run plot1.py
+          uv run plot3.py
           cd ..
 
       - name: Push to GitHub
