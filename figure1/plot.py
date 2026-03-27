@@ -14,7 +14,7 @@ plt_init()
 train_color = 'C0' # 'C2'
 test_color = 'C3' # 'C1'
 alpha = 0.7
-value_names = [r'$\mathrm{Q_i}$', r'$\mathrm{Q_{MBR}}$', 'P', 'DO', r'$\mathrm{pH_i}$', r'$\mathrm{COD_i}$',
+value_names = [r'$\mathrm{Q_i}$', r'$\mathrm{Q_{MBR}}$', r'$\Delta\mathrm{P}$', 'DO', r'$\mathrm{pH_i}$', r'$\mathrm{COD_i}$',
                r'$\mathrm{NH_3}$-$\mathrm{N_i}$', r'$\mathrm{pH_o}$', r'$\mathrm{COD_o}$', r'$\mathrm{NH_3}$-$\mathrm{N_o}$',
                r'$\mathrm{Temp_o}$', r'$\mathrm{pH_{MBR}}$']
 

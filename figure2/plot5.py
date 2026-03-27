@@ -27,7 +27,7 @@ for idx in range(4):
     value_name = df.columns[idx + 2]
 
     mask = value == 1
-    ax.plot(time[mask], df.loc[mask, df.columns[1]], 'o', markersize=3, color=method_colors[idx], clip_on=False, label=f'{value_name} trend aware + ' + r'$95\%$ CI')
+    ax.plot(time[mask], df.loc[mask, df.columns[1]], 'o', markersize=3, color=method_colors[idx], clip_on=False, label=f'{value_name} trend aware')
 
 ticks = ax.get_xticks()
 ax.set_xlim(left=time.min()-pd.Timedelta(days=31), right=time.max()+pd.Timedelta(days=31))
@@ -55,7 +55,7 @@ for idx in range(4):
     value_name = df.columns[idx + 2]
 
     mask = value == 1
-    ax.plot(time[mask], df.loc[mask, df.columns[1]], 'o', markersize=3, color=method_colors[idx], clip_on=False, label=f'{value_name} trend aware + ' + r'$95\%$ CI')
+    ax.plot(time[mask], df.loc[mask, df.columns[1]], 'o', markersize=3, color=method_colors[idx], clip_on=False, label=f'{value_name} trend aware')
 
 ticks = ax.get_xticks()
 ax.set_xlim(left=time.min()-pd.Timedelta(days=31), right=time.max()+pd.Timedelta(days=31))

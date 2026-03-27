@@ -109,7 +109,7 @@ jobs:
           cd figure1
           # uv run font_test.py
           uv run plot.py
-          # uv run plot2.py
+          uv run plot2.py
           cd ..
           cd figure2
           uv run plot1.py
