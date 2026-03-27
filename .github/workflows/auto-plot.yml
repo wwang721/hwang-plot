@@ -113,7 +113,10 @@ jobs:
           cd ..
           cd figure2
           uv run plot1.py
+          uv run plot2.py
           uv run plot3.py
+          uv run plot4.py
+          uv run plot5.py
           cd ..
 
       - name: Push to GitHub
