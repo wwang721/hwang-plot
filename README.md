@@ -35,6 +35,9 @@ Things need to be done by H. Wang [@Innocentcloud](https://github.com/Innocentcl
 2. Upload data into the created folders.
 3. Add your requirements for each figure to the `readme.md` file in the corresponding folder.
 
+> [!TIP]
+> 文件(夹)名里不要带空格, 尽量用英文名!
+
 Things need to be done by W. Wang [@wwang721](https://github.com/wwang721):
 
 1. Write Python scipts to plot figures per H. Wang's requirements.
