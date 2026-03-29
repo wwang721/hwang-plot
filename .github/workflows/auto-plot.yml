@@ -128,6 +128,7 @@ jobs:
           cd ..
 
       - name: Push to GitHub
+        if: github.event_name == 'push'
         uses: EndBug/add-and-commit@v7.2.1
         with:
           branch: main
