@@ -4,6 +4,7 @@ import matplotlib.cm as cm
 import matplotlib.colors as mcolors
 import pandas as pd
 from pathlib import Path
+from scipy.stats import gaussian_kde
 
 import sys
 sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -37,6 +38,27 @@ TARGET_LABEL = r'$\mathrm{COD_{MBR}}$'
 
 rng = np.random.default_rng(42)
 
+
+def kde_violin_swarm(x_vals, max_spread=0.34, n_grid=200):
+    x_vals = np.asarray(x_vals, dtype=float)
+    if len(x_vals) == 0:
+        return np.array([]), np.array([]), np.array([])
+
+    lo, hi = np.percentile(x_vals, [0.5, 99.5])
+    if np.isclose(lo, hi):
+        return np.array([lo, hi]), np.array([0.0, 0.0]), rng.uniform(-0.02, 0.02, len(x_vals))
+
+    x_grid = np.linspace(lo, hi, n_grid)
+    if np.unique(x_vals).size < 2:
+        density_grid = np.ones_like(x_grid)
+    else:
+        density_grid = gaussian_kde(x_vals)(x_grid)
+
+    density_grid /= density_grid.max() + 1e-12
+    widths_grid = max_spread * density_grid
+    offsets = rng.uniform(-1, 1, len(x_vals)) * np.interp(x_vals, x_grid, widths_grid) * 0.95
+    return x_grid, widths_grid, offsets
+
 # -----------------------------------------------------------------------
 # Figure 1: Beeswarm of SHAP interaction values for key pairs
 # Each row = one interaction pair; dots colored by main feature value
@@ -55,16 +77,27 @@ fig, ax = plt.subplots(figsize=(9, 1.2 * n_rows + 1.5))
 for y_pos, df in enumerate(dfs):
     shap_vals = df.iloc[:, 2].values          # interaction_shap_value
     feat_vals = df.iloc[:, 0].values          # main feature raw value
-    jitter    = rng.uniform(-0.35, 0.35, len(shap_vals))
+    x_grid, widths_grid, offsets = kde_violin_swarm(shap_vals)
 
     # Normalize feature values to [0, 1] independently per row
     vlo, vhi = np.percentile(feat_vals, 2), np.percentile(feat_vals, 98)
     norm_vals = np.clip((feat_vals - vlo) / (vhi - vlo + 1e-9), 0, 1)
 
-    ax.scatter(shap_vals, y_pos + jitter,
+    if len(x_grid) > 0:
+        ax.fill_between(
+            x_grid,
+            y_pos - widths_grid,
+            y_pos + widths_grid,
+            color='#d8d8d8',
+            alpha=0.18,
+            linewidth=0,
+            zorder=0,
+        )
+
+    ax.scatter(shap_vals, y_pos + offsets,
                c=norm_vals, cmap=cmap_feat,
                vmin=0, vmax=1,
-               s=5, alpha=0.55, linewidths=0)
+               s=5, alpha=0.75, linewidths=0, zorder=1)
 
 ax.axvline(x=0, color='k', linestyle='--', lw=0.8, alpha=0.6)
 ax.set_yticks(range(n_rows))
