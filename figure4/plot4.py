@@ -56,7 +56,7 @@ def heatmap_panel(ax, csv_path, title, panel_label):
     ax.set_xlabel('Samples (sorted by prediction)', labelpad=5)
     ax.set_title(title)
     ax.tick_params(bottom=False, labelbottom=False)
-    plt.colorbar(im, ax=ax, fraction=0.03, pad=0.03, label='SHAP value')
+    plt.colorbar(im, ax=ax, pad=0.03, label='SHAP value')
     ax.text(-0.12, 1.08, panel_label, transform=ax.transAxes,
             fontsize=15, va='top', ha='right')
 

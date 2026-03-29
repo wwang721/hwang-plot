@@ -75,7 +75,7 @@ ax.set_title(f'{TARGET_LABEL} — Key Feature Interaction Beeswarm', pad=8)
 # Shared colorbar: low → high feature value
 sm = cm.ScalarMappable(cmap=shap_cmap, norm=mcolors.Normalize(vmin=0, vmax=1))
 sm.set_array([])
-cb = plt.colorbar(sm, ax=ax, fraction=0.03, pad=0.03)
+cb = plt.colorbar(sm, ax=ax, pad=0.03)
 cb.set_label('Feature value\n(low → high)', fontsize=8)
 cb.set_ticks([0, 0.5, 1])
 cb.set_ticklabels(['Low', 'Mid', 'High'])

@@ -65,7 +65,7 @@ def beeswarm_panel(ax, csv_path, title, panel_label):
     sm = plt.cm.ScalarMappable(cmap=shap_cmap,
                                norm=plt.Normalize(vmin=-vmax, vmax=vmax))
     sm.set_array([])
-    cb = plt.colorbar(sm, ax=ax, fraction=0.03, pad=0.03)
+    cb = plt.colorbar(sm, ax=ax, pad=0.03)
     cb.set_label('SHAP value', fontsize=9)
     cb.ax.tick_params(labelsize=8)
 
