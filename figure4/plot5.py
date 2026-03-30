@@ -70,7 +70,7 @@ def load_panel_data(csv_path):
     return [(feature_cols[idx], shap_matrix[:, idx]) for idx in order]
 
 
-def beeswarm_panel(ax, csv_path, title, panel_label, x_label):
+def beeswarm_panel(ax, csv_path, panel_label, x_label):
     rows = load_panel_data(csv_path)
     max_abs = max(np.percentile(np.abs(vals), 99) for _, vals in rows)
 
@@ -117,8 +117,7 @@ def beeswarm_panel(ax, csv_path, title, panel_label, x_label):
     ax.set_xlim(-max_abs * 1.08, max_abs * 1.08)
     ax.grid(axis='y', linestyle=':', linewidth=0.4, alpha=0.35)
     ax.set_xlabel(x_label, labelpad=5)
-    ax.set_title(title, pad=6)
-    ax.text(0.02, 0.98, panel_label, transform=ax.transAxes,
+    ax.text(-0.1, 1.03, panel_label, transform=ax.transAxes,
             fontsize=15, va='top', ha='left')
 
     sm = cm.ScalarMappable(cmap=shap_cmap, norm=mcolors.Normalize(vmin=0, vmax=1))
@@ -138,14 +137,12 @@ for model in MODELS:
     beeswarm_panel(
         axes[0],
         f"./data/4/{model}_CODMBR_before_heatmap_matrix.csv",
-        r'$\mathrm{COD_{MBR}}$',
         '(a)',
         'SHAP value (impact on output)',
     )
     beeswarm_panel(
         axes[1],
         f"./data/4/{model}_NH3NMBR_before_heatmap_matrix.csv",
-        r'$\mathrm{NH_3}$-$\mathrm{N_{MBR}}$',
         '(b)',
         'SHAP value (impact on output)',
     )

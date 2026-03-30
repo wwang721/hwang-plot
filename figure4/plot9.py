@@ -103,7 +103,6 @@ ax.axvline(x=0, color='k', linestyle='--', lw=0.8, alpha=0.6)
 ax.set_yticks(range(n_rows))
 ax.set_yticklabels(row_labels, fontsize=10)
 ax.set_xlabel('SHAP interaction value', labelpad=5)
-ax.set_title(f'{TARGET_LABEL} — Key Feature Interaction Beeswarm', pad=8)
 
 # Shared colorbar: low → high feature value
 sm = cm.ScalarMappable(cmap=shap_cmap, norm=mcolors.Normalize(vmin=0, vmax=1))

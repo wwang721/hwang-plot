@@ -32,7 +32,7 @@ LABEL_MAP = {
 models = ['RF', 'LightGBM', 'SVM', 'XGBoost']
 
 
-def heatmap_panel(ax, csv_path, title, panel_label):
+def heatmap_panel(ax, csv_path, panel_label):
     df = pd.read_csv(csv_path)
     feature_cols = df.columns[2:]
     shap_matrix  = df[feature_cols].values
@@ -54,22 +54,18 @@ def heatmap_panel(ax, csv_path, title, panel_label):
     ax.set_yticks(range(len(feat_labels)))
     ax.set_yticklabels(feat_labels, fontsize=9)
     ax.set_xlabel('Samples (sorted by prediction)', labelpad=5)
-    ax.set_title(title)
     ax.tick_params(bottom=False, labelbottom=False)
     plt.colorbar(im, ax=ax, pad=0.03, label='SHAP value')
-    ax.text(-0.12, 1.08, panel_label, transform=ax.transAxes,
+    ax.text(-0.08, 1.07, panel_label, transform=ax.transAxes,
             fontsize=15, va='top', ha='right')
 
 
 for model in models:
     fig, axes = plt.subplots(1, 2, figsize=(13, 5))
 
-    heatmap_panel(axes[0], f"./data/4/{model}_CODMBR_before_heatmap_matrix.csv",
-                  r'$\mathrm{COD_{MBR}}$ — SHAP Heatmap', '(a)')
-    heatmap_panel(axes[1], f"./data/4/{model}_NH3NMBR_before_heatmap_matrix.csv",
-                  r'$\mathrm{NH_3}$-$\mathrm{N_{MBR}}$ — SHAP Heatmap', '(b)')
+    heatmap_panel(axes[0], f"./data/4/{model}_CODMBR_before_heatmap_matrix.csv", '(a)')
+    heatmap_panel(axes[1], f"./data/4/{model}_NH3NMBR_before_heatmap_matrix.csv", '(b)')
 
-    fig.suptitle(model, fontsize=13)
     plt.subplots_adjust(wspace=0.4)
     plt.savefig(f"figs/4_{model}_shap_heatmap.png", dpi=300, bbox_inches='tight')
     plt.close(fig)

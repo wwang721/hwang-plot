@@ -71,13 +71,13 @@ def scatter_panel(ax, df, ylabel, panel_label):
     ax.set_xlabel('Predicted values', labelpad=5)
     ax.set_ylabel(f'Actual {ylabel}', labelpad=8)
     ax.legend(ncol=2, frameon=False, fontsize=8)
-    ax.text(-0.1, 1.22, panel_label, transform=ax.transAxes,
+    ax.text(-0.05, 1.18, panel_label, transform=ax.transAxes,
             fontsize=15, va='top', ha='right')
 
     # ---- Marginal KDE distributions ----
     divider = make_axes_locatable(ax)
-    ax_top   = divider.append_axes("top",   size="18%", pad=0.05, sharex=ax)
-    ax_right = divider.append_axes("right", size="18%", pad=0.05, sharey=ax)
+    ax_top   = divider.append_axes("top",   size="18%", pad=0.01, sharex=ax)
+    ax_right = divider.append_axes("right", size="18%", pad=0.01, sharey=ax)
 
     x_range = np.linspace(lim[0], lim[1], 300)
 
@@ -85,14 +85,14 @@ def scatter_panel(ax, df, ylabel, panel_label):
         # Top marginal: distribution of predicted values
         kde_x = gaussian_kde(subset['predicted'], bw_method=0.3)
         dens_x = kde_x(x_range)
-        ax_top.fill_between(x_range, dens_x, alpha=0.45, color=color)
-        ax_top.plot(x_range, dens_x, color=color, lw=0.8)
+        ax_top.fill_between(x_range, dens_x, alpha=0.1, color=color)
+        ax_top.plot(x_range, dens_x, color=color, lw=0.2)
 
         # Right marginal: distribution of actual values
         kde_y = gaussian_kde(subset['actual'], bw_method=0.3)
         dens_y = kde_y(x_range)
-        ax_right.fill_betweenx(x_range, dens_y, alpha=0.45, color=color)
-        ax_right.plot(dens_y, x_range, color=color, lw=0.8)
+        ax_right.fill_betweenx(x_range, dens_y, alpha=0.1, color=color)
+        ax_right.plot(dens_y, x_range, color=color, lw=0.2)
 
     # Clean up marginal axes
     ax_top.set_yticks([])
@@ -121,7 +121,6 @@ for model in models:
         scatter_panel(axes[1], df_nh3n,
                       r'$\mathrm{NH_3}$-$\mathrm{N_{MBR}}$ (mg/L)', '(b)')
 
-        fig.suptitle(f'{model} — {version.capitalize()}', fontsize=13, y=1.0)
         plt.subplots_adjust(wspace=0.45)
         plt.savefig(f"figs/2_{model}_{version}.png", dpi=300, bbox_inches='tight')
         plt.close(fig)

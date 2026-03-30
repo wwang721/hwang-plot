@@ -20,8 +20,8 @@ LABEL_MAP = {
 }
 
 targets = [
-    ('CODMBR',  r'Partial dependence ($\mathrm{COD_{MBR}}$, mg/L)',              ['COD2i', 'CODo', 'DO', 'P']),
-    ('NH3NMBR', r'Partial dependence ($\mathrm{NH_3}$-$\mathrm{N_{MBR}}$, mg/L)', ['DO', 'NH3N2i', 'NH3NO', 'P']),
+    ('CODMBR',  r'Partial dependence',              ['COD2i', 'CODo', 'DO', 'P']),
+    ('NH3NMBR', r'Partial dependence', ['DO', 'NH3N2i', 'NH3NO', 'P']),
 ]
 panel_labels = ['(a)', '(b)', '(c)', '(d)']
 
@@ -45,7 +45,7 @@ for target_prefix, ylabel, features in targets:
         ax.set_xlabel(LABEL_MAP.get(feature, feature), labelpad=5)
         if i % 2 == 0:   # left column only
             ax.set_ylabel(ylabel, labelpad=8)
-        ax.text(0.02, 0.98, panel, transform=ax.transAxes,
+        ax.text(-0.1, 1.05, panel, transform=ax.transAxes,
                 fontsize=15, va='top', ha='left')
 
     plt.tight_layout(h_pad=3.0, w_pad=2.5)

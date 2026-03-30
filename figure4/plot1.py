@@ -53,9 +53,8 @@ for ax, df, title, panel in zip(
     ax.set_yticks(range(len(df.index)))
     ax.set_xticklabels([LABEL_MAP.get(c, c) for c in df.columns], rotation=45, ha='right', fontsize=9)
     ax.set_yticklabels([LABEL_MAP.get(c, c) for c in df.index], fontsize=9)
-    ax.set_title(title)
     plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-    ax.text(-0.15, 1.08, panel, transform=ax.transAxes, fontsize=15, va='top', ha='right')
+    ax.text(-0.06, 1.04, panel, transform=ax.transAxes, fontsize=15, va='top', ha='right')
 
 plt.subplots_adjust(wspace=0.45)
 plt.savefig("figs/1_correlation_heatmap.png", dpi=300, bbox_inches='tight')
