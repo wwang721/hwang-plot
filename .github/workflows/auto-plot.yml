@@ -9,6 +9,7 @@ on:
       - '**/*.jpg'
       - '**/*.jpeg'
       - '**/*.csv'
+      - '.claude/**'
 
   pull_request:
     branches: [ "main" ]
@@ -18,6 +19,7 @@ on:
       - '**/*.jpg'
       - '**/*.jpeg'
       - '**/*.csv'
+      - '.claude/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -108,23 +110,23 @@ jobs:
           # cd ..
           cd figure1
           # uv run font_test.py
-          uv run plot.py
-          uv run plot2.py
+          # uv run plot.py
+          # uv run plot2.py
           cd ..
           cd figure2
-          uv run plot1.py
-          uv run plot2.py
-          uv run plot3.py
-          uv run plot4.py
-          uv run plot5.py
+          # uv run plot1.py
+          # uv run plot2.py
+          # uv run plot3.py
+          # uv run plot4.py
+          # uv run plot5.py
           cd ..
           cd figure3
-          uv run plot1.py
-          uv run plot2.py
-          uv run plot3.py
-          uv run plot4.py
-          uv run plot5.py
-          uv run plot6.py
+          # uv run plot1.py
+          # uv run plot2.py
+          # uv run plot3.py
+          # uv run plot4.py
+          # uv run plot5.py
+          # uv run plot6.py
           cd ..
           cd figure4
           uv run plot1.py

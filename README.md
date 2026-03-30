@@ -47,7 +47,6 @@ Things need to be done by W. Wang [@wwang721](https://github.com/wwang721):
 ## More information
 
 - Repository maintainers:
-    * [@Innocentcloud](https://github.com/Innocentcloud)
     * [@wwang721](https://github.com/wwang721/)
 
 - License: [BSD-3-Clause](/LICENSE)
