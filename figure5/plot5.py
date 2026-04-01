@@ -70,8 +70,8 @@ def plot_stacked_bar(ax, df, colors):
 
 
 def load_and_trim(filepath):
-    df = pd.read_csv(filepath, comment='#', header=0)
-    df.columns = [df.columns[0]] + SAMPLES
+    df = pd.read_csv(filepath)
+    df.columns = [df.columns[0].lstrip('#')] + SAMPLES
     df = df.set_index(df.columns[0])
     # sort by mean abundance descending
     df['_mean'] = df[SAMPLES].mean(axis=1)
