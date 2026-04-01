@@ -60,9 +60,14 @@ for it, method in enumerate(methods):
     # ax3.legend(ncol=2, frameon=False)
     # ax.grid(True, alpha=0.2)
 
-    ax1.text(-0.05, 1.10, '(a)', transform=ax1.transAxes, fontsize=15, va='top', ha='right')
-    ax2.text(-0.05, 1.10, '(b)', transform=ax2.transAxes, fontsize=15, va='top', ha='right')
-    ax3.text(-0.05, 1.10, '(c)', transform=ax3.transAxes, fontsize=15, va='top', ha='right')
+    if method != 'Hampel':
+        ax1.text(-0.05, 1.10, '(a)', transform=ax1.transAxes, fontsize=15, va='top', ha='right')
+        ax2.text(-0.05, 1.10, '(b)', transform=ax2.transAxes, fontsize=15, va='top', ha='right')
+        ax3.text(-0.05, 1.10, '(c)', transform=ax3.transAxes, fontsize=15, va='top', ha='right')
+    else:
+        ax1.text(-0.06, 1.10, '(a)', transform=ax1.transAxes, fontsize=15, va='top', ha='right')
+        ax2.text(-0.06, 1.10, '(b)', transform=ax2.transAxes, fontsize=15, va='top', ha='right')
+        ax3.text(-0.06, 1.10, '(c)', transform=ax3.transAxes, fontsize=15, va='top', ha='right')
 
     plt.subplots_adjust(
         # wspace=0.12,   # width space between columns
