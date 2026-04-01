@@ -54,8 +54,8 @@ for (res_file, qq_file, res_col, tq_col, sq_col, ref_col, target_label, outname)
     ax1.text(-0.08, 1.03, '(a)', transform=ax1.transAxes, fontsize=15, va='top', ha='right')
 
     # ── (b) Q-Q plot ──
-    ax2.scatter(df_qq[tq_col], df_qq[sq_col], s=6, color='C0', alpha=0.7, edgecolors='none', zorder=3)
-    ax2.plot(df_qq[tq_col], df_qq[ref_col], color='C3', lw=1.5, zorder=2)
+    ax2.scatter(df_qq[tq_col], df_qq[sq_col], s=50, color='C0', alpha=0.7, edgecolors='none', zorder=3)
+    ax2.plot(df_qq[tq_col], df_qq[ref_col], color='C3', lw=2, zorder=2)
 
     ax2.set_xlabel('Theoretical quantiles', labelpad=5)
     ax2.set_ylabel('Sample quantiles', labelpad=5)

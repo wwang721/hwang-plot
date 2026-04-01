@@ -68,8 +68,8 @@ print("Saved figs/2_COD.png")
 
 # ── Other CSVs: one figure each ──
 others = [
-    ('NH3N.csv',   ['NH3-N2i', 'NH3-NO', 'NH3NMBR'],
-     [r'$\mathrm{NH_3}$-$\mathrm{N_i}$', r'$\mathrm{NH_3}$-$\mathrm{N_o}$', r'$\mathrm{NH_3}$-$\mathrm{N_{MBR}}$'],
+    ('NH3N.csv',   ['NH3-NO', 'NH3NMBR'],
+     [r'$\mathrm{NH_3}$-$\mathrm{N_o}$', r'$\mathrm{NH_3}$-$\mathrm{N_{MBR}}$'],
      r'$\mathrm{NH_3}$-N (mg/L)', '2_NH3N'),
     ('DO和P.csv',  ['P', 'DO'],
      [r'$\Delta P$ (Pa)', 'DO (mg/L)'],
@@ -103,3 +103,17 @@ for filename, cols, labels, ylabel, outname in others:
     plt.savefig(f"figs/{outname}.png", dpi=300, bbox_inches='tight')
     plt.close(fig)
     print(f"Saved figs/{outname}.png")
+
+# ── NH3-Ni separate figure ──
+nh3n = pd.read_csv("./data/2/NH3N.csv", index_col=0)
+x = np.arange(1, len(nh3n) + 1)
+fig, ax = plt.subplots(figsize=(9, 4))
+ball_plot(ax, x, nh3n['NH3-N2i'], PALETTE[0], label=r'$\mathrm{NH_3}$-$\mathrm{N_i}$')
+ax.set_ylabel(r'$\mathrm{NH_3}$-N (mg/L)', labelpad=5)
+ax.set_xlabel('Sample index', labelpad=5)
+ax.legend(frameon=False)
+ax.set_xlim(0, len(nh3n) + 1)
+plt.tight_layout()
+plt.savefig("figs/2_NH3Ni.png", dpi=300, bbox_inches='tight')
+plt.close(fig)
+print("Saved figs/2_NH3Ni.png")

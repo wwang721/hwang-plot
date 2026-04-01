@@ -12,6 +12,9 @@
 **2_NH3N.png**
 ![2_NH3N](figs/2_NH3N.png)
 
+**2_NH3Ni.png**
+![2_NH3Ni](figs/2_NH3Ni.png)
+
 **2_DO_P.png**
 ![2_DO_P](figs/2_DO_P.png)
 
