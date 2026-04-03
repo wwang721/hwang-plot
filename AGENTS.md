@@ -19,6 +19,8 @@ cd figure1 && python plot.py
 cd figure2 && python plot1.py
 ```
 
+> **Caveat:** Scripts use relative paths for CSV data and output (`./data/`, `figs/`), so they **must be run from within their own `figureN/` directory**. Running from the repo root will fail with file-not-found errors.
+
 The CI workflow uses `uv` and sets `MPLBACKEND=Agg` for headless rendering. When running locally, set this if no display is available:
 ```bash
 MPLBACKEND=Agg python plot.py
