@@ -25,8 +25,11 @@
 **2_NH3N_combined.png**
 ![2_NH3N_combined](figs/2_NH3N_combined.png)
 
-**2_DO_P.png**
-![2_DO_P](figs/2_DO_P.png)
+**2_P.png**
+![2_P](figs/2_P.png)
+
+**2_DO.png**
+![2_DO](figs/2_DO.png)
 
 **2_Q.png**
 ![2_Q](figs/2_Q.png)
